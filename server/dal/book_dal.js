@@ -39,11 +39,11 @@ class BookDAL {
         return book.save();
     }
 
-    async addAnswer(bookId, answer) {
+  /*   async addAnswer(bookId, answer) {
         const book = await this.getBook(bookId);
         book.books.push({title: answer});
         return book.save();
-    }
+    } */
 
    /*  async upvoteAnswer(questionId, answerId) {
         const question = await this.getQuestion(questionId);
@@ -52,7 +52,7 @@ class BookDAL {
         return question.save();
     } */
 
-    async bootstrap(count = 10) {
+    async bootstrap(count = 1) {
         let l = (await this.getBooks()).length;
         console.log("Book collection size:", l);
 
@@ -61,16 +61,46 @@ class BookDAL {
 
             for (let i = 0; i < count; i++) {
                 let book = new this.bookModel({
-                    category: 'JavaScript Category',
-                    books: [
-                        { title: "How to JS Part 1" },
-                        { author: "Kayle" },
-                        { price: 30 },
-                        { name: "Alex" },
-                        { email: "alex@gmail.com" }
+                    category: 'JavaScript',
+                    books: [ 
+                        {
+                        title: "How to JS Part 1",
+                        author: "Kayle",
+                        price: 30,
+                        name: "Alex",
+                        email: "alex@gmail.com"
+                    },
+                        {
+                            title: "How to JS Part 2",
+                            author: "Kayleson",
+                            price: 45,
+                            name: "Peter",
+                            email: "Peter@gmail.com"
+                        },
+                    ],
+                    
+                });
+                let book1 = new this.bookModel({
+                    category: 'C#',
+                    books: [ {
+                        title: "Don't do it",
+                        author: "Simon",
+                        price: 99,
+                        name: "Jesper",
+                        email: "jesper@gmail.com"
+                    },
+                        {
+                            title: "C# the hard way",
+                            author: "Jike",
+                            price: 150,
+                            name: "James",
+                            email: "james@gmail.com"
+                        },
                     ]
                 });
+                
                 promises.push(book.save());
+                promises.push(book1.save());
             }
 
             return Promise.all(promises);

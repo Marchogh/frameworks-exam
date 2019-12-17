@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link, Router} from "@reach/router";
 import {connect} from "react-redux";
 
-import Books from "./Books";
+import Category from "./Category";
 import Book from "./Book";
 import Login from "./Login";
 import Alert from "./Alert";
@@ -72,7 +72,7 @@ class App extends Component {
                     <Alert msg={this.state.alertMsg}/>
 
                     <Router>
-                        <Books path="/"
+                        <Category path="/"
                             books={this.props.books}
                             onPostBook={(category) => this.props.postBook(category)}
                         />

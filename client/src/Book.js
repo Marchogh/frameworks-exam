@@ -30,6 +30,7 @@ export default class Book extends Component {
                 <div className="container">
                 <section className="section">
                     {book ? <h3>{book.category}</h3> : <p>"loading text..."</p>}
+                    
                 </section>
 
                 <section className="section has-background-white-bis">
