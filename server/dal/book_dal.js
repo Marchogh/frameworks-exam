@@ -39,19 +39,6 @@ class BookDAL {
         return category.save();
     }
 
-  /*   async addAnswer(bookId, answer) {
-        const book = await this.getBook(bookId);
-        book.books.push({title: answer});
-        return book.save();
-    } */
-
-   /*  async upvoteAnswer(questionId, answerId) {
-        const question = await this.getQuestion(questionId);
-        const answer = question.answers.id(answerId);
-        answer.votes++;
-        return question.save();
-    } */
-
     async bootstrap(count = 1) {
         let l = (await this.getCategories()).length;
         console.log("Book collection size:", l);

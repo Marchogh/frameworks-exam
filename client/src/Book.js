@@ -1,30 +1,24 @@
-import React, {Component} from 'react';
-/* import { Link } from "@reach/router"; */
-/* import PostAnswer from "./PostAnswer"; */
+import React, { Component } from 'react';
 
 export default class Book extends Component {
-
     render() {
-        const book = this.props.getBook(this.props.id);
+
+        const book = this.props.books;
         console.log(book);
         
         return (
             <>
                 <div className="container">
-                <section className="section">
-                    {book ? <h3>You are under category {book.category}</h3> : <p>"loading books..."</p>}
+                    <h2 className="title is-4">Alt information omkring: </h2>
 
-                       {/*  {book.books.map((b) => (
-                            <li key={b._id}>
-                                <Link to={"/book/" + b._id}>
-                                    <p>{b.title}</p>
-                                    <p>{b.author}</p>
-                                </Link>
-                            </li>
-                        ))}  */}
-                </section>
+                    <ul>
+                        {book.category}
+                        {book.title}
+                    </ul>
                 </div>
             </>
         )
     };
+
 }
+

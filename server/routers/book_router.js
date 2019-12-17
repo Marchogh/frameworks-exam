@@ -19,15 +19,5 @@ module.exports = (dal) => {
         dal.createCategory(newCategory).then(newCategory => res.json(newCategory));
     });
 
-    /* router.post('/:id/answers', (req, res) => {
-        dal.addAnswer(req.params.id, req.body.text).then(updatedBook => res.json(updatedBook));
-    }); */
-
-    /* router.put('/:id/answers/:aid/vote', (req, res) => {
-        let id = req.params.id;
-        let aid = req.params.aid;
-        dal.upvoteAnswer(id, aid).then(updatedQuestion => res.json(updatedQuestion));
-    }); */
-
     return router;
 };

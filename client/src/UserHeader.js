@@ -9,10 +9,12 @@ class UserHeader extends Component {
                     <>
                         Welcome {this.props.username}.
                         <button className="button is-small" onClick={
-                            (event) => this.props.logout(event)}>logout</button>
+                            (event) => this.props.logout(event)}> logout</button>
+                        
+
                     </>)
             } else {
-                return <Link to="/login" className="btnText">Login</Link>
+                return <Link to="/login" className="btnText">User Login</Link>
             }
         };
 

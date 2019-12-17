@@ -3,12 +3,14 @@ import {Link, Router} from "@reach/router";
 import {connect} from "react-redux";
 
 import Category from "./Category";
+import BookList from "./BookList";
 import Book from "./Book";
 import Login from "./Login";
 import Alert from "./Alert";
 import UserHeader from "./UserHeader";
 
-import { login, logout, loadBooks, postCategory, /* postAnswer, voteAnswerUp, */ hideAlert } from './actions';
+import { login, logout, loadBooks, postCategory, hideAlert } from './actions';
+import PostCategory from './PostCategory';
 
 class App extends Component {
     constructor(props) {
@@ -60,27 +62,33 @@ class App extends Component {
                         <div className="container">
                             <Link to="/"><h1 className="title is-2">Find Books</h1></Link>
                             <h2 className="subtitle">
-                                Get help here!
+                                Find used study books for sale
                             </h2>
                         </div>
                     </div>
                 </section>
 
                 <UserHeader username={this.props.user.username} logout={_ => this.props.logout()}/>
-
+                <div className="container is-widescreen"><Link to="post-category"><p className="notification">Post a book for sale -></p></Link></div>
                 <section className="section">
                     <Alert msg={this.state.alertMsg}/>
 
                     <Router>
                         <Category path="/"
                             books={this.props.books}
-                            onPostCategory={(category) => this.props.postCategory(category)}
+                            
                         />
 
-                        <Book path="/category/:id"
+                        <BookList path="/category/:id"
                             getBook={(id) => this.props.books.find(e => e._id === id)}
-                            /* handleVote={(id, aid) => this.props.voteAnswerUp(id, aid)}
-                            onPostAnswer={(id, text) => this.props.postAnswer(id, text)} */
+                        />
+
+                        <Book path="/book/:id" getBook={(id) => this.props.books.find(b => b._id === id)} 
+                            books={this.props.books}
+                        />
+
+                        <PostCategory path="/post-category"
+                            onPostCategory={(category) => this.props.postCategory(category)}
                         />
 
                         <Login path="/login"
@@ -88,18 +96,7 @@ class App extends Component {
                             infoMsg={this.state.infoMsg}
                         />
                     </Router>
-
                 </section>
-
-                <footer className="footer">
-                    <div className="container">
-                        <div className="content has-text-centered">
-                            <p>
-                                <strong>Book site</strong> 
-                            </p>
-                        </div>
-                    </div>
-                </footer>
             </>
         );
     }
@@ -114,10 +111,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loadBooks: _ => dispatch(loadBooks()),
     postCategory: category => dispatch(postCategory(category)),
-    /* postAnswer: (id, text) => dispatch(postAnswer(id, text)), */
     login: (username, password) => dispatch(login(username, password)),
     logout: _ => dispatch(logout()),
-   /*  voteAnswerUp: (bookId, answerId) => dispatch(voteAnswerUp(bookId, answerId)), */
     hideAlert: _ => dispatch(hideAlert())
 });
 

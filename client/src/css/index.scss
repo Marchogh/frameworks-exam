@@ -3,6 +3,28 @@ code {
     monospace;
 }
 
+a {
+  color: #3273dc !important;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+li {
+  list-style: none;
+}
+
+.book-list {
+  background-color: whitesmoke;
+  border-radius: 4px;
+  padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+  margin: 25px 0;
+}
+
 .alert {
   padding: 20px;
   background-color: #f44336;
@@ -15,7 +37,28 @@ code {
   color: #202020;
 }
 
-h3 {
-  font-size: 20px;
-  font-weight: 700;
+.hero-body {
+  text-align: center;
+}
+
+.hero.is-primary {
+  background-color: #120d4c;
+}
+
+.button.is-primary {
+  background-color: #120d4c;
+  font-weight: 500;
+}
+
+.list-item {
+  font-weight: 800;
+  font-size: 25px;
+}
+
+.list-items {
+  padding: 25px 0;
+}
+
+.book-title {
+  text-align: center;
 }

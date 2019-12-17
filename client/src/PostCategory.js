@@ -27,7 +27,6 @@ export default class PostCategory extends Component {
     render() {
         return (
             <form>
-
                 <div className="field">
                     <label className="label" htmlFor="CategoryInput">Add category</label>
                     <textarea className="textarea" onChange={this.onChange} name="category"
