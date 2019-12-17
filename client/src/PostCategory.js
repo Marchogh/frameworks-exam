@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-export default class PostBook extends Component {
+export default class PostCategory extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            book: ""
+            category: ""
         };
         this.handleInput = this.handleInput.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -14,13 +14,13 @@ export default class PostBook extends Component {
 
     handleInput(event) {
         event.preventDefault();
-        this.props.onPostBook(this.state.book);
-        this.setState({book: ""})
+        this.props.onPostCategory(this.state.category);
+        this.setState({category: ""})
     }
 
     onChange(event) {
         this.setState({
-            book: event.target.value
+            category: event.target.value
         });
     }
 
@@ -29,15 +29,15 @@ export default class PostBook extends Component {
             <form>
 
                 <div className="field">
-                    <label className="label" htmlFor="BookInput">Your Book</label>
-                    <textarea className="textarea" onChange={this.onChange} name="book"
-                           value={this.state.book}
-                           placeholder="Book"
-                           id="BookInput"/>
+                    <label className="label" htmlFor="CategoryInput">Add category</label>
+                    <textarea className="textarea" onChange={this.onChange} name="category"
+                           value={this.state.category}
+                           placeholder="Category"
+                           id="CategoryInput"/>
                 </div>
                 <div className="field">
                     <button className="button is-primary" onClick={this.handleInput} type="submit"
-                            id="BookButton">Post Book
+                            id="CategoryButton">Post Category
                     </button>
                 </div>
             </form>

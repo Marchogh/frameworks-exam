@@ -16,27 +16,27 @@ class BookDAL {
         this.bookModel = mongoose.model('book', bookSchema);
     }
 
-    async getBooks() {
+    async getCategories() {
         try {
             return await this.bookModel.find({});
         } catch (error) {
-            console.error("getBook:", error.message);
+            console.error("getCategories:", error.message);
             return {};
         }
     }
 
-    async getBook(id) {
+    async getCategory(id) {
         try {
             return await this.bookModel.findById(id);
         } catch (error) {
-            console.error("getBook:", error.message);
+            console.error("getCategory:", error.message);
             return {};
         }
     }
 
-    async createBook(newBook) {
-        let book = new this.bookModel(newBook);
-        return book.save();
+    async createCategory(newCategory) {
+        let category = new this.bookModel(newCategory);
+        return category.save();
     }
 
   /*   async addAnswer(bookId, answer) {
@@ -53,14 +53,14 @@ class BookDAL {
     } */
 
     async bootstrap(count = 1) {
-        let l = (await this.getBooks()).length;
+        let l = (await this.getCategories()).length;
         console.log("Book collection size:", l);
 
         if (l === 0) {
             let promises = [];
 
             for (let i = 0; i < count; i++) {
-                let book = new this.bookModel({
+                let category = new this.bookModel({
                     category: 'JavaScript',
                     books: [ 
                         {
@@ -80,7 +80,7 @@ class BookDAL {
                     ],
                     
                 });
-                let book1 = new this.bookModel({
+                let category1 = new this.bookModel({
                     category: 'C#',
                     books: [ {
                         title: "Don't do it",
@@ -99,8 +99,8 @@ class BookDAL {
                     ]
                 });
                 
-                promises.push(book.save());
-                promises.push(book1.save());
+                promises.push(category.save());
+                promises.push(category1.save());
             }
 
             return Promise.all(promises);

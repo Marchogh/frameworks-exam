@@ -8,7 +8,7 @@ import Login from "./Login";
 import Alert from "./Alert";
 import UserHeader from "./UserHeader";
 
-import { login, logout, loadBooks, postBook, /* postAnswer, voteAnswerUp, */ hideAlert } from './actions';
+import { login, logout, loadBooks, postCategory, /* postAnswer, voteAnswerUp, */ hideAlert } from './actions';
 
 class App extends Component {
     constructor(props) {
@@ -74,10 +74,10 @@ class App extends Component {
                     <Router>
                         <Category path="/"
                             books={this.props.books}
-                            onPostBook={(category) => this.props.postBook(category)}
+                            onPostCategory={(category) => this.props.postCategory(category)}
                         />
 
-                        <Book path="/book/:id"
+                        <Book path="/category/:id"
                             getBook={(id) => this.props.books.find(e => e._id === id)}
                             /* handleVote={(id, aid) => this.props.voteAnswerUp(id, aid)}
                             onPostAnswer={(id, text) => this.props.postAnswer(id, text)} */
@@ -113,7 +113,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     loadBooks: _ => dispatch(loadBooks()),
-    postBook: category => dispatch(postBook(category)),
+    postCategory: category => dispatch(postCategory(category)),
     /* postAnswer: (id, text) => dispatch(postAnswer(id, text)), */
     login: (username, password) => dispatch(login(username, password)),
     logout: _ => dispatch(logout()),

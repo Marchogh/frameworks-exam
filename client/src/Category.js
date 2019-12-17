@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from "@reach/router";
-import PostBook from "./PostBook";
+import PostCategory from "./PostCategory";
 
 export default class Books extends Component {
 
@@ -8,7 +8,7 @@ export default class Books extends Component {
         if (!this.props.books) return <p>Loading...</p>;
 
         let trList = this.props.books.map(elm =>
-            <li key={elm._id}><Link className="list-item" to={"/book/" + elm._id}>{elm.category}</Link></li>
+            <li key={elm._id}><Link className="list-item" to={"/category/" + elm._id}>{elm.category}</Link></li>
         );
 
         return (
@@ -19,7 +19,7 @@ export default class Books extends Component {
                     {trList}
                 </ul>
                 <div className="container">
-                    <PostBook onPostBook={this.props.onPostBook}/>
+                    <PostCategory onPostCategory={this.props.onPostCategory}/>
                 </div>
             </div>
         )

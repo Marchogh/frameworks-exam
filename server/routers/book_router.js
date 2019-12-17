@@ -3,25 +3,25 @@ module.exports = (dal) => {
     let router = express.Router();
 
     router.get('/', (req, res) => {
-        dal.getBooks().then(books => res.json(books));
+        dal.getCategories().then(categories => res.json(categories));
     });
 
     router.get('/:id', (req, res) => {
         let id = req.params.id;
-        dal.getBook(id).then(book => res.json(book));
+        dal.getCategory(id).then(Category => res.json(Category));
     });
 
     router.post('/', (req, res) => {
-        let newBook = {
+        let newCategory = {
             category : req.body.category,
             books : []
         };
-        dal.createBook(newBook).then(newBook => res.json(newBook));
+        dal.createCategory(newCategory).then(newCategory => res.json(newCategory));
     });
 
-    router.post('/:id/answers', (req, res) => {
+    /* router.post('/:id/answers', (req, res) => {
         dal.addAnswer(req.params.id, req.body.text).then(updatedBook => res.json(updatedBook));
-    });
+    }); */
 
     /* router.put('/:id/answers/:aid/vote', (req, res) => {
         let id = req.params.id;

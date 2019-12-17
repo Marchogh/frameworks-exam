@@ -73,13 +73,13 @@ export const loadBooks = _ => async function (dispatch) {
     }
 };
 
-export const postBook = category => async function(dispatch) {
+export const postCategory = category => async function(dispatch) {
     if (category === "") return;
     try {
-        const newBook = { category: category };
+        const newCategory = { category: category };
         const response = await Auth.fetch(`${API_URL}/books`, {
             method: "POST",
-            body: JSON.stringify(newBook)
+            body: JSON.stringify(newCategory)
         });
         if (response.status === 401) {
             dispatch(showAndHideAlert("Login", "You need to login to post Books!", "alert"));
