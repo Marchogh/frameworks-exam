@@ -82,6 +82,26 @@ export const postCategory = category => async function(dispatch) {
             body: JSON.stringify(newCategory)
         });
         if (response.status === 401) {
+            dispatch(showAndHideAlert("Login", "You need to login to post Category!", "alert"));
+        } else {
+            await response.json();
+            dispatch(loadBooks());
+        }
+    } catch (e) {
+        dispatch(showAndHideAlert("Send book error", e.message, "error"));
+        console.error(e);
+    }
+};
+
+export const postBook = title => async function (dispatch) {
+    if (title === "") return;
+    try {
+        const newTitle = { title: title };
+        const response = await Auth.fetch(`${API_URL}/books/:id/books`, {
+            method: "POST",
+            body: JSON.stringify(newTitle)
+        });
+        if (response.status === 401) {
             dispatch(showAndHideAlert("Login", "You need to login to post Books!", "alert"));
         } else {
             await response.json();

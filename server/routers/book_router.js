@@ -11,12 +11,20 @@ module.exports = (dal) => {
         dal.getCategory(id).then(Category => res.json(Category));
     });
 
+    // Create a new category and makes and empty array for future books to be stored in
     router.post('/', (req, res) => {
         let newCategory = {
             category : req.body.category,
             books : []
         };
         dal.createCategory(newCategory).then(newCategory => res.json(newCategory));
+    });
+
+    ///Post a new book for a specific category id
+    router.post("/:id/books", (request, response) => {
+        // need the id of category, and some text from the request body.
+        dal.createBook(request.params.id, request.body).then(updatedBook => response.json(updatedBook));
+
     });
 
     return router;

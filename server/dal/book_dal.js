@@ -16,6 +16,7 @@ class BookDAL {
         this.bookModel = mongoose.model('book', bookSchema);
     }
 
+    // Gets all categories
     async getCategories() {
         try {
             return await this.bookModel.find({});
@@ -25,6 +26,7 @@ class BookDAL {
         }
     }
 
+    // Gets the category by id
     async getCategory(id) {
         try {
             return await this.bookModel.findById(id);
@@ -34,11 +36,25 @@ class BookDAL {
         }
     }
 
+    // Creates a new category
     async createCategory(newCategory) {
         let category = new this.bookModel(newCategory);
         return category.save();
     }
 
+    // Creates a new book
+    async createBook(id, book) {
+        const category = await this.getCategory(id);
+        category.books.push(book);
+        try {
+            return category.save();
+        } catch (error) {
+            console.error("postBook:", error.message);
+            return {};
+        }
+    }
+
+    // Test data 
     async bootstrap(count = 1) {
         let l = (await this.getCategories()).length;
         console.log("Book collection size:", l);

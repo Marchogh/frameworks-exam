@@ -9,7 +9,7 @@ import Login from "./Login";
 import Alert from "./Alert";
 import UserHeader from "./UserHeader";
 
-import { login, logout, loadBooks, postCategory, hideAlert } from './actions';
+import { login, logout, loadBooks, postCategory, /* postBook */ hideAlert } from './actions';
 import PostCategory from './PostCategory';
 
 class App extends Component {
@@ -69,28 +69,27 @@ class App extends Component {
                 </section>
 
                 <UserHeader username={this.props.user.username} logout={_ => this.props.logout()}/>
-                <div className="container is-widescreen"><Link to="post-category"><p className="notification">Post a book for sale -></p></Link></div>
+                <div className="container is-widescreen"><Link to="post-category"><p className="notification">Manage Categories -></p></Link></div>
                 <section className="section">
                     <Alert msg={this.state.alertMsg}/>
 
                     <Router>
                         <Category path="/"
                             books={this.props.books}
-                            
                         />
 
                         <BookList path="/category/:id"
                             getBook={(id) => this.props.books.find(e => e._id === id)}
                         />
 
-                        <Book path="/book/:id" getBook={(id) => this.props.books.find(b => b._id === id)} 
-                            books={this.props.books}
+                        <Book path="/book/:id" 
+                            books={this.props.books}     
                         />
 
                         <PostCategory path="/post-category"
                             onPostCategory={(category) => this.props.postCategory(category)}
                         />
-
+                        
                         <Login path="/login"
                             login={(username, password) => this.props.login(username, password)}
                             infoMsg={this.state.infoMsg}

@@ -5,7 +5,7 @@ class UserDAL {
         this.mongoose = mongoose;
         const userSchema = new mongoose.Schema({
             username: String,
-            hash: String
+            hash: String,
         });
         this.userModel = mongoose.model('user', userSchema);
     }

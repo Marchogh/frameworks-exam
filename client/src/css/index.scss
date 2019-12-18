@@ -62,3 +62,18 @@ li {
 .book-title {
   text-align: center;
 }
+
+.notification a:not(.button):not(.dropdown-item) {
+  text-decoration: none;
+}
+
+.book-item {
+  font-weight: 500;
+  font-size: 16px;
+
+  padding: 10px 0;
+}
+
+.book-list {
+  background-color: whitesmoke;
+}
