@@ -11,23 +11,12 @@ class UserHeader extends Component {
                         Welcome {this.props.username}.
                         <button className="button is-small" onClick={
                             (event) => this.props.logout(event)}> logout</button>
-                        <form>
-                            <div className="field">
-                                <label className="label">Title</label>
-                                <div className="control">
-                                    <input className="input" type="text" placeholder="Title" />
-                                </div>
-                            </div>
-                            <div className="field">
-                                <button className="button is-primary" type="submit">
-                                    Add Book
-                    </button>
-                            </div>
-                        </form>
-
+                        <div className="container is-widescreen">
+                            <Link to="post-category"><p className="notification">Post a category</p></Link>
+                        </div>
                     </>)
             } else {
-                return <Link to="/login" className="btnText">Post a book for sale</Link>
+                return <Link to="/login" className="btnText">Admin login</Link>
             }
         };
 

@@ -26,10 +26,12 @@ export default class PostCategory extends Component {
 
     render() {
         return (
+            <section className="section">
+                <div className="container">
             <form>
                 <div className="field">
                     <label className="label" htmlFor="CategoryInput">Add category</label>
-                    <textarea className="textarea" onChange={this.onChange} name="category"
+                    <input className="input" onChange={this.onChange} name="category"
                            value={this.state.category}
                            placeholder="Category"
                            id="CategoryInput"/>
@@ -40,6 +42,8 @@ export default class PostCategory extends Component {
                     </button>
                 </div>
             </form>
+                </div>
+            </section>
         )
     };
 }

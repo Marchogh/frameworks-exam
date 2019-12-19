@@ -5,12 +5,14 @@ import {connect} from "react-redux";
 import Category from "./Category";
 import BookList from "./BookList";
 import Book from "./Book";
+import PostBook from "./PostBook";
 import Login from "./Login";
 import Alert from "./Alert";
 import UserHeader from "./UserHeader";
-
-import { login, logout, loadBooks, postCategory, /* postBook */ hideAlert } from './actions';
 import PostCategory from './PostCategory';
+
+import { login, logout, loadBooks, postCategory, postBook, hideAlert } from './actions';
+
 
 class App extends Component {
     constructor(props) {
@@ -69,7 +71,10 @@ class App extends Component {
                 </section>
 
                 <UserHeader username={this.props.user.username} logout={_ => this.props.logout()}/>
-                <div className="container is-widescreen"><Link to="post-category"><p className="notification">Manage Categories -></p></Link></div>
+                <div className="container is-widescreen">
+                    <Link to="post-book"><p className="notification">Post a book for sale -></p></Link>
+                </div>
+           
                 <section className="section">
                     <Alert msg={this.state.alertMsg}/>
 
@@ -86,14 +91,19 @@ class App extends Component {
                             books={this.props.books}     
                         />
 
+                        <PostBook path="/post-book"
+                            books={this.props.books}
+                            onPostBook={(book) => this.props.postBook(book)} />
+
                         <PostCategory path="/post-category"
                             onPostCategory={(category) => this.props.postCategory(category)}
                         />
-                        
+
                         <Login path="/login"
                             login={(username, password) => this.props.login(username, password)}
                             infoMsg={this.state.infoMsg}
                         />
+
                     </Router>
                 </section>
             </>
@@ -110,6 +120,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loadBooks: _ => dispatch(loadBooks()),
     postCategory: category => dispatch(postCategory(category)),
+    postBook: (book) => dispatch(postBook(book)),
     login: (username, password) => dispatch(login(username, password)),
     logout: _ => dispatch(logout()),
     hideAlert: _ => dispatch(hideAlert())
