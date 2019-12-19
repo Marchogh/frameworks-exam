@@ -7,20 +7,21 @@ export default class Book extends Component {
         const categories = this.props.books;
         console.log(categories);
         
+        // Splitting every category into it's own array
         let allBooks = [];
         categories.forEach(cat => {
             allBooks.push(cat.books);
         });
-
+        
+        // Use spead operator to concat the booksArray with allBooks
         let booksArray = [];
         allBooks.forEach(book => {
             booksArray = [...booksArray, ...book];
         });
-
-        // Finds the correct book id to the current page
+        
+        // Finds the correct book id 
         let desiredBook = booksArray.find(x => x._id === this.props.id);
         console.log(this.props.id);
-        console.log(desiredBook);
        
         // Prints the book as objects
         let printBook;

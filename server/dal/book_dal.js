@@ -39,7 +39,12 @@ class BookDAL {
     // Creates a new category
     async createCategory(newCategory) {
         let category = new this.bookModel(newCategory);
-        return category.save();
+        try {
+            return category.save();
+        } catch (error) {
+            console.error("getCategory:", error.message);
+            return {};
+        }
     }
 
     // Creates a new book
