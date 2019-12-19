@@ -35,7 +35,9 @@ export default class PostCategory extends Component {
       <>
         <li className="list-items">
           {c.category}{" "}
-          <button onClick={() => this.handleDeleteInput(c._id)}>Delete</button>
+          <button class="button" onClick={() => this.handleDeleteInput(c._id)}>
+            Delete
+          </button>
         </li>
       </>
     ));
