@@ -25,11 +25,6 @@ module.exports = (dal, secret) => {
         });
     });
 
-    router.put('/', (req, res) => {
-        // TODO: Implement user update (change password, etc).
-        res.status(501).json({msg: "PUT update user not implemented"});
-    });
-
     // This route takes a username and a password and create an auth token
     router.post('/authenticate', async (req, res) => {
         const username = req.body.username;

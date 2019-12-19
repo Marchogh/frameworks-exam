@@ -57,7 +57,8 @@ export default class PostCategory extends Component {
                     </button>
                 </div>
             </form>
-                    {categories}
+            <p>Delete knappen virker ikke i frontend delen - Det virker kun i backend når man laver en POST request til api/books//delte-category</p>
+                {categories}
                 </div>
             </section>
 

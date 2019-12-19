@@ -115,9 +115,29 @@ class BookDAL {
                         },
                     ]
                 });
+
+                let category2 = new this.bookModel({
+                    category: 'Python',
+                    books: [{
+                        title: "Head-First Python, 2nd edition",
+                        author: "Paul Barry",
+                        price: 30,
+                        name: "Mads",
+                        email: "mads@gmail.com"
+                    },
+                    {
+                        title: "Invent Your Own Computer Games with Python, 4th edition",
+                        author: "Al Sweigart",
+                        price: 200,
+                        name: "Allen",
+                        email: "allen@gmail.com"
+                    },
+                    ]
+                });
                 
                 promises.push(category.save());
                 promises.push(category1.save());
+                promises.push(category2.save());
             }
 
             return Promise.all(promises);
