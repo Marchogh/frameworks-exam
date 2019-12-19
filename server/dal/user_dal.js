@@ -6,6 +6,7 @@ class UserDAL {
         const userSchema = new mongoose.Schema({
             username: String,
             hash: String,
+            admin: Boolean
         });
         this.userModel = mongoose.model('user', userSchema);
     }

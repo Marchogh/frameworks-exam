@@ -11,7 +11,7 @@ import Alert from "./Alert";
 import UserHeader from "./UserHeader";
 import PostCategory from './PostCategory';
 
-import { login, logout, loadBooks, postCategory, postBook, hideAlert } from './actions';
+import { login, logout, loadBooks, postCategory, postBook, deleteCategory, hideAlert } from './actions';
 
 
 class App extends Component {
@@ -96,7 +96,9 @@ class App extends Component {
                             onPostBook={(book) => this.props.postBook(book)} />
 
                         <PostCategory path="/post-category"
+                            books={this.props.books}
                             onPostCategory={(category) => this.props.postCategory(category)}
+                            onDeleteCategory={(id) => this.props.deleteCategory(id)}  
                         />
 
                         <Login path="/login"
@@ -121,6 +123,7 @@ const mapDispatchToProps = dispatch => ({
     loadBooks: _ => dispatch(loadBooks()),
     postCategory: category => dispatch(postCategory(category)),
     postBook: (book) => dispatch(postBook(book)),
+    deleteCategory: (id) => dispatch(deleteCategory(id)),
     login: (username, password) => dispatch(login(username, password)),
     logout: _ => dispatch(logout()),
     hideAlert: _ => dispatch(hideAlert())

@@ -27,5 +27,11 @@ module.exports = (dal) => {
 
     });
 
+    // Deletes category 
+    router.post('/delte-category', (req, res) => {
+        let categoryDelete = req.body.id;
+        dal.deleteCategory(categoryDelete).then(categoryDelete => res.json(categoryDelete));
+    });
+
     return router;
 };

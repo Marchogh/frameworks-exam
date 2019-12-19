@@ -47,6 +47,15 @@ class BookDAL {
         }
     }
 
+    // Delete category
+    async deleteCategory(id) {
+        try {
+            return this.bookModel.deleteOne({ "_id": id });
+        } catch (error) {
+            console.error("remove category:", error.message);
+        }
+    }
+
     // Creates a new book
     async createBook(id, book) {
         const category = await this.getCategory(id);

@@ -12,7 +12,7 @@ class UserHeader extends Component {
                         <button className="button is-small" onClick={
                             (event) => this.props.logout(event)}> logout</button>
                         <div className="container is-widescreen">
-                            <Link to="post-category"><p className="notification">Post a category</p></Link>
+                            <Link to="post-category"><p className="manage-categories">Manage Categories</p></Link>
                         </div>
                     </>)
             } else {

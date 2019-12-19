@@ -33,8 +33,8 @@ export const addUserCredentials = (username) => ({
     username: username
 });
 
-export const removeUserCredentials = (username) => ({
-    type: 'REMOVE_USER_CRED'
+export const deleteUserCredentials = (username) => ({
+    type: 'delete_USER_CRED'
 });
 
 export const login = (username, password) => async function (dispatch) {
@@ -49,7 +49,7 @@ export const login = (username, password) => async function (dispatch) {
 
 export const logout = _ => async function (dispatch) {
     Auth.logout();
-    dispatch(removeUserCredentials());
+    dispatch(deleteUserCredentials());
 };
 
 
@@ -109,6 +109,26 @@ export const postBook = book => async function (dispatch) {
         }
     } catch (e) {
         dispatch(showAndHideAlert("Send book error", e.message, "error"));
+        console.error(e);
+    }
+};
+
+
+export const deleteCategory = (deleteId) => async function () {
+    if (deleteId === "") return;
+    try {
+        const id = { id : deleteId };
+        const response = await Auth.fetch(`${API_URL}/books/delete-category`, {
+            method: "POST",
+            body: JSON.stringify(id)
+        });
+        if (response.status === 401) {
+            console.log("You need to login to delete categories!");
+            await navigate("/login");
+        } else {
+            await response.json();
+        }
+    } catch (e) {
         console.error(e);
     }
 };

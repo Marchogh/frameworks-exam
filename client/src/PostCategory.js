@@ -10,6 +10,7 @@ export default class PostCategory extends Component {
         };
         this.handleInput = this.handleInput.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.handleDeleteInput = this.handleDeleteInput.bind(this);
     }
 
     handleInput(event) {
@@ -24,7 +25,21 @@ export default class PostCategory extends Component {
         });
     }
 
+    handleDeleteInput(id) {
+        this.props.onDeleteCategory(id);
+    }
+
     render() {
+
+        if (!this.props.books) return <p>Loading...</p>;
+
+        let categories = this.props.books.map(c =>
+            <>
+                <li className="list-items">{c.category} <button onClick={() => this.handleDeleteInput(c._id)}>Delete</button></li>
+                
+            </>
+        );
+            
         return (
             <section className="section">
                 <div className="container">
@@ -42,8 +57,10 @@ export default class PostCategory extends Component {
                     </button>
                 </div>
             </form>
+                    {categories}
                 </div>
             </section>
+
         )
     };
 }
