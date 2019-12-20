@@ -33,6 +33,7 @@ export default class PostBook extends Component {
             POST Book - Kunne ikke få den til at virke i frontend delen, den
             virker hvis man sender en POST request via API'en
             api/books/:id/books
+            <p>Man skal også være logged in så det kræver en Bearer Token</p>
           </p>
 
           <form>
